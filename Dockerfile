@@ -12,9 +12,11 @@ COPY ./src ./src
 RUN mvn package -DskipTests
 
 FROM openjdk:17-jdk-slim
+
 WORKDIR /app
-COPY --from=build /app/target/JMusicBot-Snapshot-All.jar .
+
+COPY --from=build /app/target/JMusicBot-0.3.8-All.jar .
 
 COPY config.txt .
 
-ENTRYPOINT ["java","-Dnogui=true","-jar","JMusicBot-Snapshot-All.jar"]
+ENTRYPOINT ["java","-Dnogui=true","-jar","JMusicBot-0.3.8-All.jar"]
